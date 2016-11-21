@@ -3,8 +3,42 @@
   <head>
     <meta charset="utf-8">
     <title>Angular Day 1</title>
+    <script type="text/javascript" src="vendors/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/client.js"></script>
   </head>
-  <body>
-    
+  <body ng-app="BasicApp">
+    {{2 + 2}} <!-- This is called an expression -->
+    <div ng-controller="BasicController as basic">
+      <input ng-model="basic.greeting">
+      {{basic.greeting}}
+      <br>
+      <br>
+      <input ng-model="basic.greeting">
+      <button ng-click="basic.printGreeting()">Print Greeting</button>
+          {{basic.cohort}}
+      <br>
+      <p>
+        The name of our cohort is {{basic.cohort.name}} and we are in room {{basic.cohort.roomNumber}}
+      </p>
+      <p>
+        {{basic.hucksFavoriteThings}}
+      </p>
+      <form>
+        <label for="name">Name</label>
+        <input type="text" name="name" ng-model="basic.newThing.name">
+        <label for="happinessPoints">Happiness Points</label>
+        <input type="number" name="happinessPoints" ng-model="basic.newThing.happinessPoints">
+        <button type="submit" ng-click="basic.createFavoriteThing()"></button>
+      </form>
+      <ul>
+        <li ng-repeat="thing in basic.hucksFavoriteThings">
+          <button ng-click="thing.show = !thing.show">Change</button><span ng-show="thing.show">{{thing.name}} gives huck {{thing.happinessPoints}} happiness points</span>
+        </li>
+      </ul>
+    </div>
+
+
+
+
   </body>
 </html>
